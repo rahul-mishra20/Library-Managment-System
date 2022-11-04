@@ -1,0 +1,45 @@
+.content{
+    display: flex;
+    padding:100px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.main{
+    padding : 50px;
+    margin: 20px;
+}  
+
+.news{
+    min-width: 450px;
+    min-height: 300px;
+    max-height: 300px;
+    max-width: 465px;
+    overflow-y: hidden;
+    background-image: url('images/current.jpg'); 
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.profile{
+    border: 2px solid black;
+    max-height: 400px;
+    background-image: url('images/profile.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.profile a{
+    text-decoration: none;
+    border: 2px solid black;
+    padding: 10px;
+    color: black;
+}
+
+.news a{
+    color: black;
+}
+
+.news:hover{
+    overflow-y: scroll;
+}
+

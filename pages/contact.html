@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact Form</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'style3.css' %}">
+  <link type="text/css" rel="stylesheet" href="{% static 'mainnav.css' %}">
+  <link type="text/css" rel="stylesheet" href="{% static 'main.css' %}">
+ 
+</head>
+<body>
+  <header>Online Library</header>
+  <nav class="nav">
+    <ul>
+      {% if user.is_authenticated %}
+        <li> <a href="{%url 'home'%}">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="{%url 'contact'%}">Contact Us</a></li>
+        <li><a href="{%url 'library'%}">Browse Books</a></li>                
+        <li><a href="{%url 'logout'%}">Log Out</a></li>
+        <li style="color:red"><b> Hello, {{user.full_name}}</b> </li>
+      {% else %}
+      <li> <a href="{%url 'home'%}">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="{%url 'contact'%}">Contact Us</a></li>
+      {% endif %}
+    </ul> 
+  </nav>
+    <center>
+      <div class="contact-title">
+        <h1>Hello</h1>
+        <h2>We are always ready to help you !</h2>
+      </div>
+    </center>
+      <div class="Contact-form">
+        <form id="contact-form" method="post">
+          {% csrf_token %}
+              
+          <div class="Contact-form">     
+            <input type="text" name="name" class="input" placeholder="Your Name">
+          </div>
+
+          <div class="Contact-form">
+            <input type="email" name="email" class="input" placeholder="Your Email">
+          </div>
+
+          <div class="Contact-form">
+            <textarea class="input message" name="message" placeholder="Message" cols="30" row="10"></textarea>
+          </div>
+
+          <input type="submit" class="form-control submit" value="Send Message" id="message" onclick="send()">	
+        
+
+        <div class="social-icons">
+          <a class="fab facebook" href="https://www.facebook.com/KashiTechnology"></a>
+          <a class="fab instagram" href="https://www.instagram.com/kashiitvaranasi/?hl=en"></a>
+        </div>
+      </form>
+      </div>
+    
+      <center>  
+        <div class="Contact-form">
+          <a class="fas fa-map-marker-alt" href="https://www.google.com/maps/dir/25.2721131,83.0016722/kit+varanasi+location/@25.2708178,82.9452821,12.3z/data=!4m9!4m8!1m1!4e1!1m5!1m1!1s0x398fcfaf55b02fb1:0x37bb1cd1e8ee5c84!2m2!1d82.7914048!2d25.2835376"></a>
+          <i class="fas fa-phone" id="number" onclick="show(this)"></i>
+          <i class="fas fa-envelope" id="email" onclick="show(this)"></i>
+        </div>
+      </center>
+
+      {% for msg in messages %}
+        <span id="msg" hidden>{{msg}}</span>
+      {% endfor %}
+      
+</body>
+
+<script>
+  function show(info){
+    id = info.id;
+    if(id == "number"){
+      alert("Contact : +919305537364");
+    }else{
+      alert("Email : info@kashiit.ac.in");
+    }
+  }
+
+  function send(){
+    msg = document.getElementById("msg").innerText;
+    alert(msg)
+    window.location.reload(false);
+  }
+</script>
+
+</html>

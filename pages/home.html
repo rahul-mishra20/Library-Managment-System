@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+{% if user.is_authenticated %} 
+
+  <html>
+    <head>
+          <title>Home</title>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link type="text/css" rel="stylesheet" href="{% static 'mainnav.css' %}">
+          <link type="text/css" rel="stylesheet" href="{% static 'main.css' %}">
+          <link type="text/css" rel="stylesheet" href="{% static  'mainsec.css' %}">
+    </head>
+
+    <body>
+      <header>Online Library</header>
+      <nav class="nav">
+        <ul>
+            <li> <a href="{%url 'home'%}">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="{%url 'contact'%}">Contact Us</a></li>
+            <li><a href="{%url 'library'%}">Browse Books</a></li>                
+            <li><a href="{%url 'logout'%}">Log Out</a></li>
+            <li style="color:red"><b> Hello, {{user.full_name}}</b> </li>
+        </ul> 
+      </nav>
+      <section class="content">
+        
+        <div class="main news" id="news">
+          <h1> <u>Latest News :-</u> </h1>
+          {% for news in news %}
+            <a href="{{news.link}}"><h3> {{forloop.counter}}. {{news.title}} {{news.pubDate}}</h3></a>     
+          {% endfor %}
+          <center>source : <a href="https://www.thehindu.com/">The hindu</a></center>
+        </div> 
+
+        <div class="main profile">
+          <h1>Name : {{user.full_name}}</h1>
+          <h3>Id : {{user.roll_no}}</h3>
+          <h3>Email : {{user.email}}</h3>
+          <h3>Books Issued : {{user.books}} </h3>
+        </div>    
+
+      </section>
+
+    </body>
+    <script>
+      var news = document.getElementById("news");
+      const Y = news.scrollHeight - news.clientHeight;
+      setInterval(function(){
+        news.scrollBy(0,250);
+        var scroll_value = Math.ceil( news.scrollTop );
+        if(scroll_value == Y){
+          news.scrollTop = 0
+        }
+        }, 3000);
+
+    </script>
+  </html>
+
+{% else %}
+
+  <html>
+    <head>
+          <title>Main Menu</title>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link type="text/css" rel="stylesheet" href="{% static 'mainnav.css' %}">
+          <link type="text/css" rel="stylesheet" href="{% static 'main.css' %}">
+          <link type="text/css" rel="stylesheet" href="{% static  'optsec.css' %}">
+    </head>
+
+    <body>
+      <header>Online Library</header>
+
+      <nav class="nav">
+        <ul>
+          <li> <a href="{%url 'home'%}">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="{%url 'contact'%}">Contact Us</a></li>              
+        </ul> 
+      </nav>
+
+      <section class="content">
+          <a href="{% url 'login' %} " class="main user"><span>USER</span></a> 
+
+          <a href="{% url 'admin:index' %}" class="main admin"><span>Librarian</span></a>  
+      </section>
+    </body>
+  </html>
+
+{% endif %}

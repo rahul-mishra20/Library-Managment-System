@@ -1,0 +1,108 @@
+{% load static %}
+{% if user.is_authenticated %} 
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>LIbrary Section</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" rel="stylesheet" href="{% static 'mainnav.css' %}">
+        <link type="text/css" rel="stylesheet" href="{% static 'main.css' %}">
+        <link type="text/css" rel="stylesheet" href="{% static  'libsec.css' %}">
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    </head>
+    <body>
+
+    <header>Online Library</header>
+
+    <nav class="nav">
+            <ul>
+                <li> <a href="{%url 'home'%}">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="{%url 'contact'%}">Contact Us</a></li>
+                <li><a href="{%url 'library'%}">Browse Books</a></li>                
+                <li><a href="{%url 'logout'%}">Log Out</a></li>
+                <li style="color:red"><b> Hello, {{user.full_name}}</b> </li> 
+            </ul> 
+    </nav>
+
+    <center><form method="get">
+        <input type="search" name="search" list="search" placeholder="search...." class="search">                   
+        <button type="submit" class="find">Search</button> 
+    </form></center>
+
+
+    <section class="contents">
+         <div class="main filter"> 
+            <div class="search-book">
+                <form action="">
+                    <h1>Filter</h1>
+                    By Avaiability : <input type="radio" name="opt" id="opt" value="True"> <br>
+                    By E-Book : <input type="radio" name="pdf" id="pdf" value="yes"> <br>
+                    <button type="submit">Find</button>
+                </form>     
+            </div>   
+        </div>
+        {% if find %}
+        <div class="main results"> 
+                {% for find in find %}
+                    <div class="books book">
+                        {% if find.available or find.book_pdf %}
+                            <center><img src=" {{find.img.url}} " alt="image" height="282" width="199"></center>
+                            <h1>Title : {{find.title}}</h1>
+                            <h2>Author : {{find.author}}</h2>
+                            <h3>ssn : {{find.ssn}}</h3>
+                            {% if find.available %}
+                                <button onclick="issue(event)" id="{{find.ssn}}" class="val" value="{{user.books}}" >Issue</button> 
+                            {% endif %}   
+                            {% if find.book_pdf %}
+                                <button><a href="{{find.book_pdf.url}} ">Read</a></button>
+                            {% endif %}
+                        {% else %}
+                            <h1>Book Not Avaiable</h1>    
+                        {% endif %}
+                    </div>    
+                {% endfor %}
+        </div>
+        {% else %}
+        <div class="main book-cont book">
+            <h1>{{result}} </h1>
+        </div>
+       {% endif %}
+    </section>
+    </body>
+    
+    <script>
+        function issue(event){
+            var button_id = event.target.id;
+            var ssn = button_id;
+            var chance = document.getElementById(button_id).value;
+            var xhttp = new XMLHttpRequest();
+            var user_id = "{{user.roll_no}}";           
+            if (chance<=1){
+                chance = chance + 1;
+                val = chance.toString();
+                document.getElementById(button_id).value = chance;
+                url = "http://127.0.0.1:8000/library?rno=" + user_id + "&&ssn=" + ssn;
+                xhttp.open("GET", url, true);
+                xhttp.send();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                     var warning = this.responseText;
+                     alert(warning);
+                    }
+                }; 
+            }
+            else{
+                alert("Value exceeded");
+            }
+        }
+        
+    </script>
+    
+</html>
+
+{% else %}
+  <h1>Login First</h1>
+{% endif %}

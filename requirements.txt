@@ -1,0 +1,8 @@
+django==3.0.4
+opencv-python>=3.4.0.14
+numpy>=1.18.2
+beautifulsoup4>=4.8.2
+pyzbar>=0.1.8
+feedparser>=5.2.1
+Pillow>=7.0.0
+psycopg2>=2.8.4

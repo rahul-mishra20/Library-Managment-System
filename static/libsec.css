@@ -1,0 +1,43 @@
+.contents{
+    display: flex;
+    justify-content: start;
+}
+.main{
+    background-color:rgba(73, 71, 71,0.8);
+    color : white;
+    margin: 2rem;
+    
+}  
+
+.filter{
+    height: 200px;
+    width: 200px;
+    border: 5px solid rgba(0,0,0,0.8);
+}
+
+.results{
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+
+
+.books{
+    border: 2px solid rgba(0,0,0,0.8);
+    margin: 5px;
+    width: 400px;   
+}
+
+
+.search{
+    width: 30%;
+    padding: 5px;
+}
+.find{
+    padding: 5px;
+}
+
+
+

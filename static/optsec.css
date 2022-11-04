@@ -1,0 +1,38 @@
+.content{
+    display: flex;
+    padding: 5%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+}
+.main{
+    margin: 5%;
+    padding : 3%;
+    border: 2px solid black;
+    text-decoration: none;
+    color: black;
+}  
+
+
+.user{
+    background: url('images/user.jpg') no-repeat center;
+    background-size: cover;
+    color: white
+}
+.admin{
+    background: url('images/admin.jpg') no-repeat center;
+    background-size: cover;
+}
+
+.user:hover{
+    padding: 6%;
+}
+
+.admin:hover{
+    padding: 6%;
+}
+
+span{
+    font-size: xx-large;
+    font-family: sans-serif;
+}
