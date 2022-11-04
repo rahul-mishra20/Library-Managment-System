@@ -21,5 +21,7 @@
 
 ## Running project
 1. Create superuser(admin) **python rahul\manage.py createsuperuser**
-1. **python rahul\manage.py runserver**
-2. Server starts at http://127.0.0.1:8000/
+2. **python rahul\manage.py runserver**
+3. Server starts at http://127.0.0.1:8000/
+4. Login as Faculty with your superuser creds and add new faculty/books/students etc.
+5. Note: In beginning their will be no student therefore superuser have to add atleast one to use the feature
