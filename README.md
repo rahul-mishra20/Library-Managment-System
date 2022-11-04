@@ -19,5 +19,6 @@
     - **python manage.py sqlmigrate LMS 0007**
     - **python manage.py migrate**
 
-## Starting project local server
+## Running project
 1. **python rahul\manage.py runserver**
+2. Server starts at **http://127.0.0.1:8000/**
