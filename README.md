@@ -1,7 +1,7 @@
 # Library Management System Project
 
 ## Steps to setup environment for project
-1. Download and install **python 3.8.1** Link => https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe
+1. Download and install **python 3.8.10** Link => https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe
 2. Install python virtual env => **pip install virtualenv**
 3. Activate virtual env => **rahul\test_django\Scripts\activate.bat**
 4. Install the python pip dependency => **pip install -r rahul\requirements.txt**
