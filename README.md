@@ -20,5 +20,6 @@
     - **python manage.py migrate**
 
 ## Running project
+1. Create superuser(admin) **python rahul\manage.py createsuperuser**
 1. **python rahul\manage.py runserver**
 2. Server starts at http://127.0.0.1:8000/
